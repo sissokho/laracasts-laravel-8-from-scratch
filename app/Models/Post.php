@@ -14,4 +14,9 @@ class Post extends Model
         'excerpt',
         'body'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
