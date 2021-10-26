@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -19,8 +20,15 @@ class DatabaseSeeder extends Seeder
             'name' => 'Moustapha Sissokho'
         ]);
 
-        Post::factory(5)->create([
-            'user_id' => $user->id
-        ]);
+        Category::factory()
+            ->count(5)
+            ->has(
+                Post::factory()
+                    ->count(5)
+                    ->state(function () use ($user) {
+                        return ['user_id' => $user->id];
+                    })
+            )
+            ->create();
     }
 }
