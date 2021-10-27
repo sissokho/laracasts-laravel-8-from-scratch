@@ -29,10 +29,17 @@ class Post extends Model
 
     public function scopeFilter($query, $filters)
     {
-        if ($filters['search']) {
+        if ($filters['search'] ?? false) {
             $query
                 ->where('title', 'like', '%' . $filters['search'] . '%')
                 ->orWhere('body', 'like', '%' . $filters['search'] . '%');
+        }
+
+        if ($filters['category'] ?? false) {
+            $query->whereHas(
+                'category',
+                fn ($query) => $query->where('slug', $filters['category'])
+            );
         }
     }
 }
