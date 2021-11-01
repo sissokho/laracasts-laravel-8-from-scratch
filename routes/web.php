@@ -21,9 +21,3 @@ use PhpParser\Node\Expr\FuncCall;
 Route::get('/', [PostController::class, 'index']);
 
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
-
-Route::get('/authors/{author:username}', function (User $author) {
-    return view('posts', [
-        'posts' => $author->posts
-    ]);
-});
