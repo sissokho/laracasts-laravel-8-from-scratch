@@ -39,3 +39,5 @@ Route::post('/sessions', [SessionsController::class, 'store'])->middleware('gues
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
 Route::post('/newsletter', NewsletterController::class);
+
+Route::get('/admin/posts/create', [PostController::class, 'create'])->middleware('admin');
