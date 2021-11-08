@@ -1,4 +1,4 @@
-@props(['active'])
+@props(['active' => false])
 
 <a {{ $attributes->class(['bg-blue-500 text-white' => $active])
                 ->merge(['class' => 'block text-left px-3 text-sm leading-6
