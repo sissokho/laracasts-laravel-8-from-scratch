@@ -41,9 +41,12 @@ Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth
 
 Route::post('/newsletter', NewsletterController::class);
 
-Route::post('/admin/posts', [AdminController::class, 'store'])->middleware('admin');
-Route::get('/admin/posts/create', [AdminController::class, 'create'])->middleware('admin');
-Route::get('/admin/posts', [AdminController::class, 'index'])->middleware('admin');
-Route::get('/admin/posts/{post}/edit', [AdminController::class, 'edit'])->middleware('admin');
-Route::patch('/admin/posts/{post}', [AdminController::class, 'update'])->middleware('admin');
-Route::delete('/admin/posts/{post}', [AdminController::class, 'destroy'])->middleware('admin');
+Route::middleware(['can:admin'])->group(function () {
+    Route::resource('admin/posts', AdminController::class)->except('show');
+    // Route::post('/admin/posts', [AdminController::class, 'store']);
+    // Route::get('/admin/posts/create', [AdminController::class, 'create']);
+    // Route::get('/admin/posts', [AdminController::class, 'index']);
+    // Route::get('/admin/posts/{post}/edit', [AdminController::class, 'edit']);
+    // Route::patch('/admin/posts/{post}', [AdminController::class, 'update']);
+    // Route::delete('/admin/posts/{post}', [AdminController::class, 'destroy']);
+});
