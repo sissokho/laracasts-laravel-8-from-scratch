@@ -65,4 +65,11 @@ class AdminController extends Controller
 
         return back()->with('success', 'Post Updated!');
     }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+
+        return back()->with('success', 'Post Deleted!');
+    }
 }

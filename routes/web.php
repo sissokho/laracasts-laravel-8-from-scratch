@@ -46,3 +46,4 @@ Route::get('/admin/posts/create', [AdminController::class, 'create'])->middlewar
 Route::get('/admin/posts', [AdminController::class, 'index'])->middleware('admin');
 Route::get('/admin/posts/{post}/edit', [AdminController::class, 'edit'])->middleware('admin');
 Route::patch('/admin/posts/{post}', [AdminController::class, 'update'])->middleware('admin');
+Route::delete('/admin/posts/{post}', [AdminController::class, 'destroy'])->middleware('admin');
