@@ -31,6 +31,10 @@
                         <x-dropdown.item href="/admin/posts/create" :active="request()->is('admin/posts/create')">
                             New Post
                         </x-dropdown.item>
+                        <x-dropdown.item href="/admin/posts/" :active="request()->is('admin/posts')">
+                            All Posts
+                        </x-dropdown.item>
+                        <li>
                         <x-dropdown.item href="#" @click.prevent="$refs.logoutForm.submit()">
                             Log Out
                         </x-dropdown.item>
