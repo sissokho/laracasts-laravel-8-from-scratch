@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
@@ -40,6 +41,8 @@ Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth
 
 Route::post('/newsletter', NewsletterController::class);
 
-Route::get('/admin/posts/create', [PostController::class, 'create'])->middleware('admin');
-
-Route::post('/admin/posts', [PostController::class, 'store'])->middleware('admin');
+Route::post('/admin/posts', [AdminController::class, 'store'])->middleware('admin');
+Route::get('/admin/posts/create', [AdminController::class, 'create'])->middleware('admin');
+Route::get('/admin/posts', [AdminController::class, 'index'])->middleware('admin');
+Route::get('/admin/posts/{post}/edit', [AdminController::class, 'edit'])->middleware('admin');
+Route::patch('/admin/posts/{post}', [AdminController::class, 'update'])->middleware('admin');
